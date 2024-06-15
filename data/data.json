@@ -1,0 +1,21 @@
+{
+  "places": [
+    {
+      "id": "1",
+      "address": "12 Avenue Habib Bourguiba",
+      "city": "Tunis - La Fayette"
+    },
+    {"id": "2", "address": "34 Rue de Marseille", "city": "Sfax"},
+    {"id": "3", "address": "56 Rue de Rome", "city": "Sousse"},
+    {
+      "id": "4",
+      "address": "78 Avenue de la Liberté",
+      "city": "Tunis - Le kram"
+    },
+    {"id": "5", "address": "90 Avenue de Paris", "city": "Sfax"},
+    {"id": "6", "address": "23 Rue d'Espagne", "city": "Sousse"},
+    {"id": "7", "address": "45 Avenue de Carthage", "city": "Tunis"},
+    {"id": "8", "address": "67 Rue de France", "city": "Sfax"},
+    {"id": "9", "address": "89 Rue d'Italie", "city": "Sousse"}
+  ]
+}
