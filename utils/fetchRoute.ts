@@ -1,4 +1,3 @@
-// fetchRoute.ts
 import axios from 'axios';
 
 interface Coordinates {
@@ -6,21 +5,27 @@ interface Coordinates {
   longitude: number;
 }
 
+interface RouteData {
+  coordinates: Coordinates[];
+  duration: string;
+}
+
 const fetchRoute = async (
   origin: Coordinates,
   destination: Coordinates,
   apiKey: string,
-  mode: 'driving' | 'walking' = 'driving',
-): Promise<Coordinates[]> => {
-  const url = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin.latitude},${origin.longitude}&destination=${destination.latitude},${destination.longitude}&mode=${mode}&key=${apiKey}`;
+  p0: string,
+): Promise<RouteData> => {
+  const url = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin.latitude},${origin.longitude}&destination=${destination.latitude},${destination.longitude}&mode=${p0}&key=${apiKey}`;
 
   try {
     const response = await axios.get(url);
     const points = response.data.routes[0].overview_polyline.points;
-    return decodePolyline(points);
+    const duration = response.data.routes[0].legs[0].duration.text;
+    return {coordinates: decodePolyline(points), duration};
   } catch (error) {
     console.error('Error fetching route:', error);
-    return [];
+    return {coordinates: [], duration: ''};
   }
 };
 
@@ -43,7 +48,8 @@ const decodePolyline = (t: string): Coordinates[] => {
     let dlat = result & 1 ? ~(result >> 1) : result >> 1;
     lat += dlat;
 
-    (shift = 0), (result = 0);
+    shift = 0;
+    result = 0;
     do {
       b = t.charCodeAt(index++) - 63;
       result |= (b & 0x1f) << shift;
