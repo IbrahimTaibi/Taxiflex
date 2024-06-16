@@ -4,7 +4,7 @@ const customMapStyle = [
     elementType: 'geometry.fill',
     stylers: [
       {
-        weight: '6.00',
+        weight: '2.00',
       },
     ],
   },

@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
   bottomSection: {
     width: '100%',
     backgroundColor: colors.background,
-    paddingHorizontal: '4%',
+    paddingHorizontal: 20,
     position: 'absolute',
     bottom: 0,
     borderTopStartRadius: 20,
@@ -43,6 +43,19 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: colors.primary,
     borderRadius: 2.5,
+  },
+  cancelButton: {
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  cancelButtonText: {
+    color: 'red',
+    fontSize: 16,
+    fontFamily: 'Lato-SemiBold',
+    marginBottom: 15,
   },
 });
 

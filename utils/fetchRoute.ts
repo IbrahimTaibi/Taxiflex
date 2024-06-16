@@ -1,3 +1,4 @@
+// fetchRoute.ts
 import axios from 'axios';
 
 interface Coordinates {
@@ -9,8 +10,9 @@ const fetchRoute = async (
   origin: Coordinates,
   destination: Coordinates,
   apiKey: string,
+  mode: 'driving' | 'walking' = 'driving',
 ): Promise<Coordinates[]> => {
-  const url = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin.latitude},${origin.longitude}&destination=${destination.latitude},${destination.longitude}&key=${apiKey}`;
+  const url = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin.latitude},${origin.longitude}&destination=${destination.latitude},${destination.longitude}&mode=${mode}&key=${apiKey}`;
 
   try {
     const response = await axios.get(url);
@@ -41,8 +43,7 @@ const decodePolyline = (t: string): Coordinates[] => {
     let dlat = result & 1 ? ~(result >> 1) : result >> 1;
     lat += dlat;
 
-    shift = 0;
-    result = 0;
+    (shift = 0), (result = 0);
     do {
       b = t.charCodeAt(index++) - 63;
       result |= (b & 0x1f) << shift;

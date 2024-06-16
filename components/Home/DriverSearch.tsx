@@ -1,5 +1,5 @@
 import React, {useEffect, useRef} from 'react';
-import {View, Animated, Text, StyleSheet} from 'react-native';
+import {View, Animated, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import LottieView from 'lottie-react-native';
 import styles from '../../styles/HomeScreenStyles/DriverSearchStyles';
 
@@ -7,17 +7,17 @@ import styles from '../../styles/HomeScreenStyles/DriverSearchStyles';
 const taxiAnimation = require('../../assets/animations/SearchingAnimation.json');
 
 type BottomSectionProps = {
-  animatedHeight: Animated.Value;
   animatedOpacity: Animated.Value;
   panHandlers: any;
-  handlePress: () => void;
+
   visitedPlaces: {adresse: string; City: string}[];
+  setDriverSearchVisible: (visible: boolean) => void;
 };
 
 const DriverSearch: React.FC<BottomSectionProps> = ({
-  animatedHeight,
   animatedOpacity,
   panHandlers,
+  setDriverSearchVisible,
 }) => {
   const searchLinePosition = useRef(new Animated.Value(0)).current;
 
@@ -26,8 +26,8 @@ const DriverSearch: React.FC<BottomSectionProps> = ({
       Animated.loop(
         Animated.sequence([
           Animated.timing(searchLinePosition, {
-            toValue: 300, // Adjust the maximum position as needed
-            duration: 1000, // Adjust the duration as needed
+            toValue: 300,
+            duration: 1000,
             useNativeDriver: true,
           }),
           Animated.timing(searchLinePosition, {
@@ -42,10 +42,12 @@ const DriverSearch: React.FC<BottomSectionProps> = ({
     animateLine();
   }, [searchLinePosition]);
 
+  const handleCancel = () => {
+    setDriverSearchVisible(false); // Hide the DriverSearch component
+  };
+
   return (
-    <Animated.View
-      style={[styles.bottomSection, {height: animatedHeight}]}
-      {...panHandlers}>
+    <Animated.View style={[styles.bottomSection]} {...panHandlers}>
       <Animated.View style={{opacity: animatedOpacity}}>
         <View style={styles.searchContainer}>
           <View style={styles.iconContainer}>
@@ -55,15 +57,16 @@ const DriverSearch: React.FC<BottomSectionProps> = ({
               loop
               style={styles.icon}
             />
-
             <Text style={styles.searchText}>
               En train de chercher un taxi ...
             </Text>
           </View>
+          <TouchableOpacity style={styles.cancelButton} onPress={handleCancel}>
+            <Text style={styles.cancelButtonText}>Cancel Ride</Text>
+          </TouchableOpacity>
         </View>
       </Animated.View>
     </Animated.View>
   );
 };
-
 export default DriverSearch;
