@@ -1,10 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {
   View,
   TouchableOpacity,
   useWindowDimensions,
   Text,
   Image,
+  StyleSheet,
 } from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faBars} from '@fortawesome/free-solid-svg-icons';
@@ -16,9 +17,11 @@ import TopSection from '../../components/Home/TopSection';
 import Sidebar from '../../components/Home/SideBar';
 import MapView, {Marker, Polyline} from 'react-native-maps';
 import {getGeocodeResult} from '../../utils/geocodeUtils';
-import fetchRoute from '../../utils/fetchRoute'; //
-import axios from 'axios';
+import fetchRoute from '../../utils/fetchRoute'; // Import the fetchRoute function
+import axios from 'axios'; // Import axios
 import customMapStyle from '../../components/Maps/customMapStyle';
+import DriverSearch from '../../components/Home/DriverSearch';
+import LottieView from 'lottie-react-native';
 
 interface Coordinates {
   latitude: number;
@@ -56,7 +59,8 @@ const HomeScreen = () => {
     {adresse: 'Tunis Carthage Airport (TUN)', City: 'Tunis'},
     {adresse: 'TUNISIA MALL', City: 'Tunis'},
   ];
-
+  const destination = require('../../assets/animations/Destination.json');
+  const startLocation = require('../../assets/animations/Start.json');
   const [currentPosition, setCurrentPosition] = useState<Coordinates | null>(
     null,
   );
@@ -67,6 +71,7 @@ const HomeScreen = () => {
   const [route, setRoute] = useState<Coordinates[]>([]);
 
   const apiKey = 'AIzaSyCs5EWB5w0IQdpb7fKfBjz3BGShIPPY9r0';
+  const mapRef = useRef<MapView | null>(null); // Reference to MapView
 
   useEffect(() => {
     Geolocation.getCurrentPosition(
@@ -111,6 +116,26 @@ const HomeScreen = () => {
               apiKey,
             );
             setRoute(route);
+
+            // Adjust the map view to fit both current position and selected location
+            setTimeout(() => {
+              mapRef.current?.animateToRegion(
+                {
+                  latitude:
+                    (currentPosition.latitude + destination.latitude) / 2,
+                  longitude:
+                    (currentPosition.longitude + destination.longitude) / 2,
+                  latitudeDelta:
+                    Math.abs(currentPosition.latitude - destination.latitude) *
+                    2,
+                  longitudeDelta:
+                    Math.abs(
+                      currentPosition.longitude - destination.longitude,
+                    ) * 2,
+                },
+                2000, // Duration in milliseconds
+              );
+            }, 500); // Delay to ensure smooth transition
           }
         } else {
           console.error('Invalid location details:', details);
@@ -127,6 +152,7 @@ const HomeScreen = () => {
     <View style={styles.container}>
       {currentPosition ? (
         <MapView
+          ref={mapRef} // Attach the ref to MapView
           customMapStyle={customMapStyle}
           style={styles.map}
           initialRegion={{
@@ -136,20 +162,20 @@ const HomeScreen = () => {
             longitudeDelta: 0.0421,
           }}>
           <Marker coordinate={currentPosition} title="You are here">
-            <Image
-              source={require('../../assets/icons/custom_marker.png')}
-              style={{width: 30, height: 30}}
+            <LottieView
+              source={startLocation}
+              autoPlay
+              loop
+              style={localStyles.iconStart}
             />
           </Marker>
           {selectedLocation && (
             <Marker coordinate={selectedLocation} title="Selected Location">
-              <Image
-                source={require('../../assets/icons/custom_marker.png')}
-                style={{
-                  width: 35,
-                  height: 35,
-                  borderRadius: 15,
-                }}
+              <LottieView
+                source={destination}
+                autoPlay
+                loop
+                style={localStyles.iconEnd}
               />
             </Marker>
           )}
@@ -200,5 +226,13 @@ const HomeScreen = () => {
     </View>
   );
 };
+
+const localStyles = StyleSheet.create({
+  iconStart: {
+    width: 50,
+    height: 50, // Adjusted for Lottie animation
+  },
+  iconEnd: {width: 50, height: 50},
+});
 
 export default HomeScreen;

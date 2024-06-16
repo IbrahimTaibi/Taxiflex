@@ -7,7 +7,10 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   map: {
-    ...StyleSheet.absoluteFillObject,
+    width: '100%',
+    height: '70%',
+    position: 'absolute',
+    top: 0,
   },
   cityName: {
     position: 'absolute',
