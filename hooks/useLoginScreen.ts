@@ -8,7 +8,7 @@ interface UseLoginScreenReturn {
   setPhoneNumber: (phoneNumber: string) => void;
   isKeyboardVisible: boolean;
   handleSignIn: () => void;
-  handleGoogleSignIn: () => void;
+  handleGoogleSignIn: (userInfo: any) => void;
   handleFacebookSignIn: () => void;
   getLocation: () => void;
 }
@@ -43,13 +43,14 @@ const useLoginScreen = (): UseLoginScreenReturn => {
     navigation.navigate('Verification', {phoneNumber}); // Passing phoneNumber as a parameter
   };
 
-  const handleGoogleSignIn = () => {
-    console.log('Google Sign-In Pressed');
+  const handleGoogleSignIn = (userInfo: any) => {
+    console.log('Google Sign-In Pressed', userInfo);
   };
 
   const handleFacebookSignIn = () => {
     console.log('Facebook Sign-In Pressed');
   };
+
   const getLocation = () => {
     Geolocation.getCurrentPosition(
       position => {
@@ -69,6 +70,7 @@ const useLoginScreen = (): UseLoginScreenReturn => {
       {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
     );
   };
+
   return {
     phoneNumber,
     setPhoneNumber,

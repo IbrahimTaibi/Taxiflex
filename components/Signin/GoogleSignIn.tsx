@@ -1,18 +1,44 @@
-// components/Signin/GoogleSignInButton.tsx
 import React from 'react';
 import {TouchableOpacity, Text, StyleSheet, Image, View} from 'react-native';
+import {
+  GoogleSignin,
+  statusCodes,
+} from '@react-native-google-signin/google-signin';
 import {TEXTS} from '../../constants/constants';
 
 // Ensure the path to the image is correct based on your project structure
 const googleIcon = require('../../assets/icons/googleIcon.png');
 
 interface GoogleSignInButtonProps {
-  onPress: () => void;
+  onPress: (userInfo: any) => void; // Update the type as necessary
 }
 
 const GoogleSignInButton: React.FC<GoogleSignInButtonProps> = ({onPress}) => {
+  const signIn = async () => {
+    try {
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+      onPress(userInfo); // Pass userInfo to onPress
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        if (error.message === statusCodes.SIGN_IN_CANCELLED) {
+          // user cancelled the login flow
+        } else if (error.message === statusCodes.IN_PROGRESS) {
+          // operation (e.g. sign in) is in progress already
+        } else if (error.message === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+          // play services not available or outdated
+        } else {
+          // some other error happened
+          console.error(error.message);
+        }
+      } else {
+        console.error('Unknown error', error);
+      }
+    }
+  };
+
   return (
-    <TouchableOpacity style={styles.button} onPress={onPress}>
+    <TouchableOpacity style={styles.button} onPress={signIn}>
       <Image source={googleIcon} style={styles.logo} />
       <View style={styles.textContainer}>
         <Text style={styles.text}>{TEXTS.googleButtonText}</Text>

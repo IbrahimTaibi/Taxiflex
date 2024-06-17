@@ -5,6 +5,7 @@ import TopSection from '../../components/Signin/LoginScreenSections/TopSection';
 import MiddleSection from '../../components/Signin/LoginScreenSections/MiddleSection';
 import BottomSection from '../../components/Signin/LoginScreenSections/BottomSection';
 import styles from '../../styles/SigninStyles/LoginScreenStyles';
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
 
 const LoginScreen: React.FC = () => {
   const {
@@ -28,7 +29,19 @@ const LoginScreen: React.FC = () => {
         handleSignIn={handleSignIn}
       />
       <MiddleSection
-        handleGoogleSignIn={handleGoogleSignIn}
+        handleGoogleSignIn={async () => {
+          try {
+            await GoogleSignin.hasPlayServices();
+            const userInfo = await GoogleSignin.signIn();
+            handleGoogleSignIn(userInfo); // Pass userInfo here
+          } catch (error) {
+            if (error instanceof Error) {
+              console.error(error.message);
+            } else {
+              console.error('Unknown error', error);
+            }
+          }
+        }}
         handleFacebookSignIn={handleFacebookSignIn}
       />
       {!isKeyboardVisible && <BottomSection />}
