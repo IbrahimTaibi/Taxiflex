@@ -74,7 +74,6 @@ const HomeScreen = () => {
   const [watchId, setWatchId] = useState<number | null>(null);
   const [driverSearchVisible, setDriverSearchVisible] = useState(false);
   const [driverFoundVisible, setDriverFoundVisible] = useState(false);
-
   const apiKey = 'AIzaSyCs5EWB5w0IQdpb7fKfBjz3BGShIPPY9r0';
   const mapRef = useRef<MapView | null>(null);
 

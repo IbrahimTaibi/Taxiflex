@@ -5,7 +5,6 @@ const {width, height} = Dimensions.get('window');
 
 const sideBarStyles = StyleSheet.create({
   profileSection: {
-    height: height * 0.22,
     width: '100%',
     backgroundColor: '#fff',
     borderBottomStartRadius: 30,
@@ -17,8 +16,8 @@ const sideBarStyles = StyleSheet.create({
   profileContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: width * 0.05,
-    marginTop: width * 0.05,
+    marginBottom: width * 0.04,
+    marginTop: width * 0.04,
   },
   profileImage: {
     width: width * 0.2,
@@ -31,7 +30,7 @@ const sideBarStyles = StyleSheet.create({
     justifyContent: 'center',
   },
   profileName: {
-    fontSize: width * 0.045,
+    fontSize: width * 0.04,
     fontFamily: 'Poppins-SemiBold',
     marginBottom: width * 0.0125,
     color: '#000',
@@ -47,13 +46,13 @@ const sideBarStyles = StyleSheet.create({
     alignItems: 'center',
   },
   ratingText: {
-    fontSize: width * 0.045,
+    fontSize: width * 0.04,
     fontFamily: 'Poppins-SemiBold',
     color: colors.text,
     marginLeft: width * 0.02,
   },
   ratingTextLight: {
-    fontSize: width * 0.045,
+    fontSize: width * 0.04,
     fontFamily: 'Poppins-Light',
     color: colors.text,
   },
@@ -68,23 +67,23 @@ const sideBarStyles = StyleSheet.create({
     backgroundColor: '#fff',
     borderTopStartRadius: 30,
     borderTopEndRadius: 30,
-    padding: width * 0.04,
-    paddingTop: width * 0.1,
+    padding: width * 0.03,
+    paddingTop: width * 0.05,
   },
   menuItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: height * 0.01,
-    marginBottom: height * 0.01,
+    paddingVertical: height * 0.005,
+    marginBottom: height * 0.005,
   },
   menuIcon: {
-    width: width * 0.09,
-    height: width * 0.09,
+    width: width * 0.08,
+    height: width * 0.08,
     marginRight: width * 0.0625,
     marginLeft: width * 0.0375,
   },
   menuText: {
-    fontSize: width * 0.045,
+    fontSize: width * 0.04,
     fontFamily: 'Poppins-Regular',
     color: '#495057',
   },

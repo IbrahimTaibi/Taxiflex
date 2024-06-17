@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, Image, Animated, Text, StyleSheet} from 'react-native';
+import {
+  View,
+  Image,
+  Animated,
+  Text,
+  StyleSheet,
+  Dimensions,
+} from 'react-native';
 import Chat from '../../assets/icons/chat.svg';
 import colors from '../../constants/colors';
 
@@ -39,46 +46,46 @@ const Taxifound: React.FC<BottomSectionProps> = ({animatedHeight}) => {
     </Animated.View>
   );
 };
+const {width, height} = Dimensions.get('window');
 
 const localStyles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 10,
     width: '100%',
   },
   arrivalText: {
-    fontSize: 24,
+    fontSize: height * 0.025,
     fontFamily: 'Poppins-Bold',
     color: '#000',
-    marginBottom: 10,
+    marginBottom: height * 0.01,
   },
   vehicleContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingBottom: 20,
+    paddingBottom: height * 0.03,
   },
   vehicleText: {
-    fontSize: 18,
+    fontSize: height * 0.017,
     fontFamily: 'Poppins-Regular',
-    marginHorizontal: 10,
+    marginHorizontal: width * 0.01,
     color: colors.text,
   },
   action: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     width: '100%',
-    marginTop: 10,
+    marginTop: height * 0.015,
   },
   vehicleNumber: {
-    fontSize: 18,
+    fontSize: height * 0.017,
     fontFamily: 'Poppins-SemiBold',
     color: '#000',
-    marginHorizontal: 10,
-    paddingHorizontal: 10,
+    marginHorizontal: width * 0.01,
+    paddingHorizontal: height * 0.01,
     backgroundColor: '#e3e3e3',
-    borderRadius: 10,
+    borderRadius: 5,
   },
   separator: {
     width: '100%',
@@ -90,7 +97,7 @@ const localStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
-    paddingTop: 10,
+    paddingTop: height * 0.01,
   },
   imageContainer: {
     alignItems: 'center',
@@ -99,28 +106,28 @@ const localStyles = StyleSheet.create({
     alignItems: 'center',
   },
   nameText: {
-    fontSize: 20,
+    fontSize: width * 0.04,
     fontFamily: 'Poppins-Bold',
-    marginTop: 10,
+    marginTop: height * 0.01,
     color: colors.text,
   },
   chatText: {
-    fontSize: 20,
+    fontSize: width * 0.04,
     fontFamily: 'Poppins-Bold',
-    marginTop: 10,
+    marginTop: height * 0.01,
     color: colors.text, // assuming you have a primary color defined in colors
   },
   img: {
-    height: 100,
-    width: 100,
-    borderRadius: 50,
-    marginHorizontal: 10,
+    height: height * 0.1,
+    width: height * 0.1,
+    borderRadius: (height * 0.1) / 2,
+    marginHorizontal: height * 0.1,
   },
   chatImg: {
-    height: 100,
-    width: 100,
-    borderRadius: 50,
-    marginHorizontal: 10,
+    height: height * 0.1,
+    width: height * 0.1,
+    borderRadius: (height * 0.1) / 2,
+    marginHorizontal: height * 0.1,
     backgroundColor: '#e3e3e3',
     justifyContent: 'center',
     alignItems: 'center',
@@ -128,13 +135,13 @@ const localStyles = StyleSheet.create({
   bottomSection: {
     width: '100%',
     backgroundColor: colors.background,
-    paddingHorizontal: 20,
+    paddingHorizontal: width * 0.1,
     position: 'absolute',
     bottom: 0,
     borderTopStartRadius: 20,
     borderTopEndRadius: 20,
     alignItems: 'center',
-    paddingVertical: 20,
+    paddingVertical: height * 0.02,
   },
 });
 
