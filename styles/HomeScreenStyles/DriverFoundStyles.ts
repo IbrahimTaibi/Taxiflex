@@ -1,11 +1,13 @@
 import colors from '../../constants/colors';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
+
+const {width, height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   bottomSection: {
     width: '100%',
     backgroundColor: colors.background,
-    paddingHorizontal: 20,
+    paddingHorizontal: width * 0.05,
     position: 'absolute',
     bottom: 0,
     borderTopStartRadius: 20,
@@ -21,41 +23,41 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   icon: {
-    marginTop: 50,
-    width: 200,
-    height: 200, // Adjusted for Lottie animation
+    marginTop: height * 0.05,
+    width: width * 0.5,
+    height: width * 0.5, // Adjusted for Lottie animation
   },
   searchText: {
     fontFamily: 'Poppins-Bold',
-    fontSize: 22,
+    fontSize: width * 0.055,
     color: '#000',
   },
   searchLineContainer: {
-    width: 300, // Match this with the translateX value
-    height: 8,
+    width: width * 0.75, // Match this with the translateX value
+    height: height * 0.01,
     overflow: 'hidden',
     backgroundColor: '#E0E0E0', // Optional: background color for container
     borderRadius: 2.5,
-    marginVertical: 20,
+    marginVertical: height * 0.025,
   },
   searchLine: {
-    width: 100, // Width of the scanning line
+    width: width * 0.25, // Width of the scanning line
     height: '100%',
     backgroundColor: colors.primary,
     borderRadius: 2.5,
   },
   cancelButton: {
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    paddingVertical: height * 0.0125,
+    paddingHorizontal: width * 0.05,
     backgroundColor: 'white',
     borderRadius: 10,
     alignItems: 'center',
   },
   cancelButtonText: {
     color: 'red',
-    fontSize: 16,
+    fontSize: width * 0.04,
     fontFamily: 'Lato-SemiBold',
-    marginBottom: 15,
+    marginBottom: height * 0.01875,
   },
 });
 

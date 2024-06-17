@@ -1,5 +1,7 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
 import colors from '../../constants/colors';
+
+const {width, height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
@@ -9,101 +11,101 @@ const styles = StyleSheet.create({
   personalInfoContainer: {
     width: '100%',
     backgroundColor: '#fff',
-    borderBottomLeftRadius: 28,
-    borderBottomRightRadius: 28,
-    paddingBottom: 16, // Ensure there's padding at the bottom to avoid overflow
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+    paddingBottom: height * 0.01, // Ensure there's padding at the bottom to avoid overflow
   },
   backButton: {
     position: 'absolute',
-    top: 16,
-    left: 16,
+    top: height * 0.015,
+    left: width * 0.03,
     zIndex: 1,
   },
   centerContent: {
-    marginTop: '20%',
+    marginTop: '15%',
     alignItems: 'center',
   },
   profileImage: {
-    width: 80,
-    height: 80,
-    borderRadius: 40, // Use 40 to make it a perfect circle
+    width: width * 0.15,
+    height: width * 0.15,
+    borderRadius: (width * 0.15) / 2, // Use width to make it a perfect circle
   },
   name: {
-    fontSize: 24,
+    fontSize: width * 0.05,
     fontFamily: 'Poppins-Bold',
     color: colors.text,
-    marginTop: 8,
+    marginTop: height * 0.005,
   },
   ratingContainer: {
-    marginTop: '1%',
+    marginTop: height * 0.01,
     alignItems: 'center',
   },
   settingSections: {
     width: '100%',
     backgroundColor: '#fff',
-    borderRadius: 25,
-    paddingHorizontal: 16, // Use padding instead of percentage for better responsiveness
+    borderRadius: 20,
+    paddingHorizontal: width * 0.03, // Use padding instead of percentage for better responsiveness
   },
   portalContainer: {
     width: '100%',
-    padding: 12,
+    padding: width * 0.02,
     backgroundColor: '#fff',
     alignItems: 'center',
-    marginTop: 12, // Use a fixed value for better responsiveness
+    marginTop: height * 0.01, // Use a fixed value for better responsiveness
   },
   portalButton: {
     flexDirection: 'row',
     alignItems: 'center',
     borderRadius: 10,
-    paddingVertical: 8,
-    paddingHorizontal: 16,
+    paddingVertical: height * 0.007,
+    paddingHorizontal: width * 0.03,
     width: '100%',
   },
   portalText: {
-    marginLeft: 16,
-    fontSize: 18,
+    marginLeft: width * 0.03,
+    fontSize: width * 0.04,
     fontFamily: 'Lato-SemiBold',
     color: colors.text,
     flex: 1,
   },
   portalIcon: {
-    width: 24,
-    height: 24,
+    width: width * 0.05,
+    height: width * 0.05,
   },
   menuIcon: {
-    width: 35,
-    height: 35,
+    width: width * 0.08,
+    height: width * 0.08,
   },
   divider: {
     height: 1,
     width: '100%',
     backgroundColor: '#e0e0e0',
-    marginVertical: 8,
+    marginVertical: height * 0.008,
   },
   PlacesToVisitSections: {
-    marginTop: 16, // Use a fixed value for better responsiveness
-    marginBottom: 16, // Use a fixed value for better responsiveness
+    marginTop: height * 0.015, // Use a fixed value for better responsiveness
+    marginBottom: height * 0.015, // Use a fixed value for better responsiveness
     width: '100%',
     backgroundColor: '#fff',
-    borderRadius: 25,
-    padding: 16,
+    borderRadius: 20,
+    padding: width * 0.03,
     paddingTop: 0, // Use padding instead of percentage for better responsiveness
   },
   portalValue: {
-    fontSize: 18,
+    fontSize: width * 0.04,
     fontFamily: 'Lato-SemiBold',
     color: colors.text,
   },
   sectionLabel: {
-    fontSize: 22,
+    fontSize: width * 0.05,
     fontFamily: 'Poppins-Bold',
     alignSelf: 'flex-start',
-    paddingLeft: 16,
+    paddingLeft: width * 0.03,
     color: '#000',
-    marginBottom: 20,
+    marginBottom: height * 0.02,
   },
   scrollViewContent: {
-    paddingBottom: 20,
+    paddingBottom: height * 0.02,
   },
 });
 

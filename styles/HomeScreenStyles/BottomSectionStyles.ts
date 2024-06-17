@@ -1,11 +1,13 @@
 import colors from '../../constants/colors';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
+
+const {width, height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   bottomSection: {
     width: '100%',
     backgroundColor: colors.background,
-    paddingHorizontal: '4%',
+    paddingHorizontal: width * 0.04,
     position: 'absolute',
     bottom: 0,
     borderTopStartRadius: 20,
@@ -20,69 +22,68 @@ const styles = StyleSheet.create({
   },
   swipeLine: {
     width: '15%',
-    height: 5,
+    height: height * 0.005,
     backgroundColor: '#aaa',
     borderRadius: 2.5,
     alignSelf: 'center',
-    marginTop: 10,
+    marginTop: height * 0.01,
   },
   button: {
-    height: 50,
+    height: height * 0.06,
     justifyContent: 'flex-start',
     alignItems: 'center',
     flexDirection: 'row',
-    marginTop: '4%',
-    paddingHorizontal: 10,
-    paddingVertical: 4,
+    marginTop: height * 0.04,
+    paddingHorizontal: width * 0.025,
+    paddingVertical: height * 0.005,
     borderRadius: 10,
     backgroundColor: '#e9ecef',
   },
   iconCircleSearch: {
-    width: 40,
-    height: 40,
-    borderRadius: 23,
+    width: width * 0.1,
+    height: width * 0.1,
+    borderRadius: width * 0.115,
     backgroundColor: '#ced4da',
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: '2%',
+    marginRight: width * 0.02,
   },
   buttonText: {
-    fontSize: 18,
+    fontSize: width * 0.045,
     color: '#000',
     fontFamily: 'Poppins-SemiBold',
   },
   placesContainer: {
-    padding: 5,
+    padding: width * 0.0125,
   },
   placeText: {
-    fontSize: 16,
-    margin: 5,
+    fontSize: width * 0.04,
+    margin: width * 0.0125,
     fontFamily: 'Lato-Regular',
   },
   placeContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginVertical: 10,
+    marginVertical: height * 0.0125,
   },
   iconBottomBar: {
-    width: 30,
-    height: 30,
-    marginRight: '3%',
+    width: width * 0.075,
+    height: width * 0.075,
+    marginRight: width * 0.03,
   },
-
   placeTextContainer: {
     flex: 1,
   },
   cityText: {
-    marginLeft: 5,
-    fontSize: 14,
+    marginLeft: width * 0.0125,
+    fontSize: width * 0.035,
     color: '#666',
     fontFamily: 'Lato-Light',
   },
   separator: {
     height: 1,
     backgroundColor: '#e9ecef',
-    marginVertical: '1%',
+    marginVertical: height * 0.01,
   },
 });
 

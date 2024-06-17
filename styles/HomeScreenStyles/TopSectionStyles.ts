@@ -1,5 +1,7 @@
 import colors from '../../constants/colors';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
+
+const {width, height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   topSection: {
@@ -8,9 +10,9 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: colors.background,
     zIndex: 1,
-    paddingTop: '5%', // Adjust as needed
-    paddingBottom: '3%', // Adjust as needed
-    paddingHorizontal: '4%', // Adjust as needed
+    paddingTop: height * 0.01, // Adjust as needed
+    paddingBottom: height * 0.01, // Adjust as needed
+    paddingHorizontal: width * 0.04, // Adjust as needed
   },
   collapseButton: {
     zIndex: 2,
@@ -19,58 +21,57 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
   routeTitle: {
-    fontSize: 18,
+    fontSize: width * 0.045, // Adjust as needed
     fontFamily: 'Poppins-Bold',
     color: '#000',
   },
-
   actionSection: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: '4%',
-    marginTop: '2%',
+    paddingHorizontal: width * 0.01, // Adjust as needed
+    marginTop: height * 0.02, // Adjust as needed
   },
   locationSection: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: '8%', // Adjust as needed
+    marginTop: height * 0.01, // Adjust as needed
     backgroundColor: '#e9ecef',
-    height: 40,
-    paddingLeft: 10,
+    height: height * 0.05, // Adjust as needed
+    paddingLeft: width * 0.025, // Adjust as needed
     borderRadius: 10,
   },
   locationText: {
-    marginLeft: '2%', // Adjust as needed
+    marginLeft: width * 0.02, // Adjust as needed
     fontFamily: 'Lato-Bold',
-    fontSize: 16,
+    fontSize: width * 0.04, // Adjust as needed
     color: '#6c757d',
   },
   searchBar: {
-    height: 40,
+    height: height * 0.05, // Adjust as needed
     borderColor: '#495057',
     borderWidth: 1,
     borderRadius: 10,
-    paddingHorizontal: '4%', // Adjust as needed
+    paddingHorizontal: width * 0.04, // Adjust as needed
     backgroundColor: '#fff',
-    marginTop: 5, // Adjust as needed
+    marginTop: height * 0.005, // Adjust as needed
   },
   addStopContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 5, // Adjust as needed
+    marginTop: height * 0.005, // Adjust as needed
   },
   addStopField: {
-    height: 40,
+    height: height * 0.05, // Adjust as needed
     borderColor: '#495057',
     borderWidth: 1,
     borderRadius: 10,
-    paddingHorizontal: '4%', // Adjust as needed
+    paddingHorizontal: width * 0.04, // Adjust as needed
     backgroundColor: '#fff',
     flex: 1,
   },
   removeStopButton: {
-    marginLeft: '4%', // Adjust as needed
+    marginLeft: width * 0.04, // Adjust as needed
   },
 });
 

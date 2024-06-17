@@ -29,22 +29,22 @@ const AppNavigator: React.FC = () => {
         />
         <Stack.Screen
           name="Verification"
-          component={VerificationScreen} // Add the VerificationScreen to the stack navigator
+          component={VerificationScreen}
           options={{title: 'Verification'}}
         />
         <Stack.Screen
           name="Home"
-          component={HomeScreen} // Add the VerificationScreen to the stack navigator
+          component={HomeScreen}
           options={{title: 'Home'}}
         />
         <Stack.Screen
           name="Profile"
-          component={Profile} // Add the VerificationScreen to the stack navigator
+          component={Profile}
           options={{title: 'Profile'}}
         />
         <Stack.Screen
           name="PersonalInfo"
-          component={PersonalInfo} // Add the VerificationScreen to the stack navigator
+          component={PersonalInfo}
           options={{title: 'PersonalInfo'}}
         />
       </Stack.Navigator>

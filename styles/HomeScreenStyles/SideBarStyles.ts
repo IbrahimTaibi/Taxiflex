@@ -1,95 +1,97 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
 import colors from '../../constants/colors';
+
+const {width, height} = Dimensions.get('window');
 
 const sideBarStyles = StyleSheet.create({
   profileSection: {
-    height: '22%',
+    height: height * 0.22,
     width: '100%',
     backgroundColor: '#fff',
     borderBottomStartRadius: 30,
     borderBottomEndRadius: 30,
-    padding: 16, // Use fixed value for consistency
-    paddingTop: 40, // Use fixed value for consistency
-    paddingLeft: 40, // Use fixed value for consistency
+    padding: width * 0.04,
+    paddingTop: width * 0.1,
+    paddingLeft: width * 0.1,
   },
   profileContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 20, // Use fixed value for consistency
-    marginTop: 20, // Use fixed value for consistency
+    marginBottom: width * 0.05,
+    marginTop: width * 0.05,
   },
   profileImage: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    marginRight: 10, // Use fixed value for consistency
+    width: width * 0.2,
+    height: width * 0.2,
+    borderRadius: width * 0.1,
+    marginRight: width * 0.025,
   },
   profileTextContainer: {
     flexDirection: 'column',
     justifyContent: 'center',
   },
   profileName: {
-    fontSize: 18,
+    fontSize: width * 0.045,
     fontFamily: 'Poppins-SemiBold',
-    marginBottom: 5, // Use fixed value for consistency
+    marginBottom: width * 0.0125,
     color: '#000',
   },
   profileEmail: {
-    fontSize: 14,
+    fontSize: width * 0.035,
     fontFamily: 'Poppins-Regular',
     color: colors.primary,
   },
   ratingContainer: {
-    marginBottom: 20, // Use fixed value for consistency
+    marginBottom: width * 0.05,
     flexDirection: 'row',
     alignItems: 'center',
   },
   ratingText: {
-    fontSize: 18,
+    fontSize: width * 0.045,
     fontFamily: 'Poppins-SemiBold',
     color: colors.text,
-    marginLeft: 8, // Use fixed value for consistency
+    marginLeft: width * 0.02,
   },
   ratingTextLight: {
-    fontSize: 18,
+    fontSize: width * 0.045,
     fontFamily: 'Poppins-Light',
     color: colors.text,
   },
   ratingIcon: {
     color: colors.primary,
-    marginBottom: 8, // Use fixed value for consistency
+    marginBottom: width * 0.02,
   },
   menuSection: {
-    height: '78%',
+    height: height * 0.78,
     width: '100%',
-    marginTop: 4, // Use fixed value for consistency
+    marginTop: height * 0.01,
     backgroundColor: '#fff',
     borderTopStartRadius: 30,
     borderTopEndRadius: 30,
-    padding: 16, // Use fixed value for consistency
-    paddingTop: 40, // Use fixed value for consistency
+    padding: width * 0.04,
+    paddingTop: width * 0.1,
   },
   menuItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 8, // Use fixed value for consistency
-    marginBottom: 8, // Use fixed value for consistency
+    paddingVertical: height * 0.01,
+    marginBottom: height * 0.01,
   },
   menuIcon: {
-    width: 35,
-    height: 35,
-    marginRight: 25, // Use fixed value for consistency
-    marginLeft: 15, // Use fixed value for consistency
+    width: width * 0.09,
+    height: width * 0.09,
+    marginRight: width * 0.0625,
+    marginLeft: width * 0.0375,
   },
   menuText: {
-    fontSize: 18,
+    fontSize: width * 0.045,
     fontFamily: 'Poppins-Regular',
     color: '#495057',
   },
   separator: {
     height: 0.3,
     width: '80%',
-    marginVertical: 2, // Use fixed value for consistency
+    marginVertical: height * 0.005,
   },
 });
 

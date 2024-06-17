@@ -1,5 +1,7 @@
 import colors from '../../constants/colors';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
+
+const {width, height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
@@ -8,27 +10,27 @@ const styles = StyleSheet.create({
   },
   map: {
     width: '100%',
-    height: '70%',
+    height: height * 0.7,
     position: 'absolute',
     top: 0,
   },
   cityName: {
     position: 'absolute',
-    top: 10,
+    top: height * 0.01,
     left: '50%',
-    transform: [{translateX: -50}],
+    transform: [{translateX: -(width * 0.5)}],
     zIndex: 1,
     backgroundColor: 'white',
-    padding: 5,
+    padding: width * 0.0125,
     borderRadius: 5,
   },
   hamburgerButton: {
     position: 'absolute',
-    top: 40,
-    left: 20,
-    width: 50,
-    height: 50,
-    borderRadius: 25,
+    top: height * 0.05,
+    left: width * 0.05,
+    width: width * 0.125,
+    height: width * 0.125,
+    borderRadius: width * 0.0625,
     backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
@@ -51,7 +53,7 @@ const styles = StyleSheet.create({
     top: 0,
     bottom: 0,
     left: 0,
-    width: '80%',
+    width: width * 0.8,
     backgroundColor: '#e9ecef',
     shadowColor: '#495057',
     shadowOffset: {width: 2, height: 0},
@@ -67,24 +69,24 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   modalContent: {
-    width: '80%',
-    padding: 20,
+    width: width * 0.8,
+    padding: width * 0.05,
     backgroundColor: 'white',
     borderRadius: 10,
     alignItems: 'center',
   },
   modalTitle: {
-    fontSize: 18,
-    marginBottom: '10%',
+    fontSize: width * 0.045,
+    marginBottom: height * 0.01,
     fontFamily: 'Poppins-Bold',
   },
   modalInput: {
     width: '100%',
-    padding: 10,
+    padding: width * 0.025,
     borderColor: 'gray',
     borderWidth: 1,
     borderRadius: 10,
-    marginBottom: 10,
+    marginBottom: height * 0.0125,
     fontFamily: 'Lato-Regular',
   },
   buttonP: {
@@ -93,16 +95,16 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     borderRadius: 10,
     alignItems: 'center',
-    height: 50,
+    height: height * 0.0625,
   },
   cancelButton: {
     backgroundColor: '#e5383b',
-    height: 50,
+    height: height * 0.0625,
     color: '#fff',
   },
   buttonTextP: {
     color: '#fff',
-    fontSize: 16,
+    fontSize: width * 0.04,
     fontFamily: 'Poppins-Bold',
   },
 });

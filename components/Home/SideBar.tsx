@@ -67,7 +67,6 @@ const Sidebar: React.FC<SidebarProps> = ({
   };
 
   const handlePromotionSubmit = () => {
-    // Handle the promotion code submission logic here
     console.log('Promotion Code:', promotionCode);
     setPromotionModalVisible(false);
   };
@@ -166,9 +165,9 @@ const Sidebar: React.FC<SidebarProps> = ({
               </Text>
             </Pressable>
             <Pressable
-              style={[styles.button, styles.cancelButton]}
+              style={[styles.buttonP, styles.cancelButton]}
               onPress={() => setPromotionModalVisible(false)}>
-              <Text style={[styles.buttonText, {color: '#fff'}]}>Cancel</Text>
+              <Text style={[styles.buttonTextP, {color: '#fff'}]}>Cancel</Text>
             </Pressable>
           </Animated.View>
         </View>
