@@ -5,6 +5,7 @@ import {
   useWindowDimensions,
   Text,
   StyleSheet,
+  Animated,
 } from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faBars} from '@fortawesome/free-solid-svg-icons';
@@ -21,6 +22,8 @@ import axios from 'axios';
 import customMapStyle from '../../components/Maps/customMapStyle';
 import LottieView from 'lottie-react-native';
 import colors from '../../constants/colors';
+import DriverSearch from '../../components/Home/DriverSearch';
+import Taxifound from '../../components/Home/TaxiFound';
 
 interface Coordinates {
   latitude: number;
@@ -69,6 +72,8 @@ const HomeScreen = () => {
   const [route, setRoute] = useState<Coordinates[]>([]);
   const [duration, setDuration] = useState<string>('');
   const [watchId, setWatchId] = useState<number | null>(null);
+  const [driverSearchVisible, setDriverSearchVisible] = useState(false);
+  const [driverFoundVisible, setDriverFoundVisible] = useState(false);
 
   const apiKey = 'AIzaSyCs5EWB5w0IQdpb7fKfBjz3BGShIPPY9r0';
   const mapRef = useRef<MapView | null>(null);
@@ -110,6 +115,17 @@ const HomeScreen = () => {
       console.log('Geocode Result:', geocodeResult);
     }
   }, [geocodeResult]);
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (driverSearchVisible) {
+      timer = setTimeout(() => {
+        setDriverSearchVisible(false);
+        setDriverFoundVisible(true);
+      }, 8000); // 3 minutes in milliseconds
+    }
+    return () => clearTimeout(timer);
+  }, [driverSearchVisible]);
 
   const handlePlaceSelected = async (data: any) => {
     if (data.place_id) {
@@ -155,6 +171,9 @@ const HomeScreen = () => {
                 2000,
               );
             }, 500);
+
+            // Show the DriverSearch component
+            setDriverSearchVisible(true);
           }
         } else {
           console.error('Invalid location details:', details);
@@ -240,13 +259,24 @@ const HomeScreen = () => {
         handleRemoveStop={handleRemoveStop}
         onPlaceSelected={handlePlaceSelected}
       />
-      <BottomSection
-        animatedHeight={animatedHeight}
-        animatedOpacity={animatedOpacity}
-        panHandlers={isPanResponderEnabled ? panResponder.panHandlers : {}}
-        handlePress={handlePress}
-        visitedPlaces={visitedPlaces}
-      />
+      {driverSearchVisible ? (
+        <DriverSearch
+          animatedOpacity={animatedOpacity}
+          panHandlers={isPanResponderEnabled ? panResponder.panHandlers : {}}
+          setDriverSearchVisible={setDriverSearchVisible}
+          visitedPlaces={[]}
+        />
+      ) : driverFoundVisible ? (
+        <Taxifound animatedHeight={animatedHeight} />
+      ) : (
+        <BottomSection
+          animatedHeight={animatedHeight}
+          animatedOpacity={animatedOpacity}
+          panHandlers={isPanResponderEnabled ? panResponder.panHandlers : {}}
+          handlePress={handlePress}
+          visitedPlaces={visitedPlaces}
+        />
+      )}
       <TouchableOpacity style={styles.hamburgerButton} onPress={toggleSidebar}>
         <FontAwesomeIcon icon={faBars} size={18} color="#000" />
       </TouchableOpacity>
@@ -270,18 +300,14 @@ const localStyles = StyleSheet.create({
   },
   iconEnd: {width: 50, height: 50},
   durationContainer: {
-    backgroundColor: '#00796b', // Match stroke color
     padding: 5,
-    width: 50,
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 25,
+    borderRadius: 5,
+    borderColor: '#FFFFFF',
+    borderWidth: 1,
   },
   durationText: {
-    color: 'white', // Make the text color white
-    fontSize: 14,
-    textAlign: 'center', // Ensure text is centered
+    color: '#FFFFFF',
+    fontWeight: 'bold',
   },
 });
 
