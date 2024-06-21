@@ -1,4 +1,5 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+package="com.client">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -25,7 +26,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+    <meta-data
+            android:name="com.google.android.gms.auth.api.v2.GOOGLE_SIGN_IN"
+            android:value="@string/default_web_client_id" />
         <!-- Specify your splash screen -->
         <meta-data
             android:name="android.app.splash_screen_drawable"

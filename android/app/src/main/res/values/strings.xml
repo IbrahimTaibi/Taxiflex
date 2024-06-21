@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">client</string>
+    <string name="app_name">taxiflex</string>    
+    <string name="default_web_client_id">953641349211-b06anbd29atvns5mbfnllcs5s3afaqqr.apps.googleusercontent.com</string>
 </resources>

@@ -16,9 +16,15 @@ interface GoogleSignInButtonProps {
 const GoogleSignInButton: React.FC<GoogleSignInButtonProps> = ({onPress}) => {
   const signIn = async () => {
     try {
-      await GoogleSignin.hasPlayServices();
+      await GoogleSignin.hasPlayServices({
+        showPlayServicesUpdateDialog: true,
+      });
+      GoogleSignin.configure();
+
       const userInfo = await GoogleSignin.signIn();
-      onPress(userInfo); // Pass userInfo to onPress
+      const userToken = await GoogleSignin.getTokens();
+      console.log(userToken);
+      onPress(userInfo);
     } catch (error: unknown) {
       if (error instanceof Error) {
         if (error.message === statusCodes.SIGN_IN_CANCELLED) {
@@ -26,7 +32,7 @@ const GoogleSignInButton: React.FC<GoogleSignInButtonProps> = ({onPress}) => {
         } else if (error.message === statusCodes.IN_PROGRESS) {
           // operation (e.g. sign in) is in progress already
         } else if (error.message === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-          // play services not available or outdated
+          console.log('PLAY_SERVICES_NOT_AVAILABLE');
         } else {
           // some other error happened
           console.error(error.message);
